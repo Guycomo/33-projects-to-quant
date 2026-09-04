@@ -25,6 +25,17 @@ Below, each project is documented as it's actually built — which may differ in
 
 ## Projects
 
+### Project 1: Single-Ticker Data Fetch and Explore
+#### What it does
+Pulls one year of daily price history for gold futures (GC=F) using yfinance, then explores the resulting DataFrame: checking its shape and columns, pulling a single column (Close) as a Series, reading off the first and last closing prices, and computing the min, max, and mean close over the period. Total return over the year is calculated directly as the percentage change from the first close to the last. The notebook closes with a matplotlib line chart of the closing price over the full year.
+#### What it covers
+Fetching real market data from a financial API (yfinance) with no manual downloading
+Basic pandas indexing — selecting a single column, using .iloc to grab specific rows
+Computing simple descriptive statistics (min, max, mean) directly off a price series
+A first hand-rolled return calculation (not a library function) to build intuition for what "return" actually means
+Producing a first plot with matplotlib
+#### Notes
+No database or cleaning logic yet — this project is deliberately just "prove the data pipeline works end to end," nothing more.
 
 ---
 
