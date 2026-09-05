@@ -37,7 +37,20 @@ Producing a first plot with matplotlib
 #### Notes
 No database or cleaning logic yet — this project is deliberately just "prove the data pipeline works end to end," nothing more.
 
+## Project 2: Multi-Ticker Data Pipeline with SQLite Storage
+### What it does
+Extends Project 1 from a single ticker to five: gold futures (GC=F), EUR/USD, GBP/USD, BTC-USD, and Nasdaq futures (NQ=F) — a deliberate mix of asset classes rather than five more stocks. Loops over the list with yfinance, flattening the MultiIndex columns that yf.download returns for some tickers, and writes each row into a local SQLite database (market_data.db) with a prices table keyed on (ticker, date). Uses INSERT OR IGNORE against that composite primary key so re-running the script never creates duplicate rows. Ends by querying row counts per ticker to confirm the fetch worked — with the row counts themselves surfacing a real data quirk: BTC-USD has 366 rows for the year (it trades every day) while the FX and futures tickers have fewer (~252–260, reflecting market holidays and weekends).
+### What it covers
+Looping over an API call across multiple tickers, with a short time.sleep() between requests to be polite to the data source
+Designing a simple SQL schema by hand and creating it with sqlite3 directly (no ORM)
+Idempotent writes: the (ticker, date) primary key plus INSERT OR IGNORE means the script can be re-run safely without duplicating data
+Handling an inconsistency in the API's return shape (MultiIndex columns) before it silently breaks the insert logic
+A first real encounter with the fact that different asset classes don't share the same trading calendar — crypto trades every day, FX and futures don't
+### Notes
+No cleaning or corporate-actions logic yet - that's Project 3. This one is purely about getting multiple tickers into durable, non-duplicating storage.
+
 ---
+
 
 ## A closing note
 
