@@ -49,6 +49,19 @@ A first real encounter with the fact that different asset classes don't share th
 ### Notes
 No cleaning or corporate-actions logic yet - that's Project 3. This one is purely about getting multiple tickers into durable, non-duplicating storage.
 
+## Project 3: Data Cleaning and Corporate Actions Handling
+### What it does
+Takes the raw daily price data already sitting in the Project 2 SQLite database and puts it through a cleaning pipeline before it's trusted for any later analysis. The pipeline runs in four stages: first, it checks the price history against the official market calendar to flag any trading days that are missing from the data. Second, it adjusts historical prices for stock splits and dividends, so a chart doesn't show a fake "crash" on the day a company did a 2-for-1 split. Third, it scans the adjusted price series for suspicious day-to-day jumps that look like bad data rather than real market moves. Fourth, every flag, fix, and decision made along the way gets written to a cleaning log, so the process is auditable rather than a black box.
+### What it covers
+Cross-referencing a price series against a real market calendar (pandas_market_calendars) to catch missing trading days, rather than just eyeballing gaps
+The concept and mechanics of corporate actions — splits and dividends — and why they require adjusting historical prices to keep a return series continuous and comparable over time
+The distinction between adjusted and unadjusted close prices, and why adjusted close is the "true" series for most analysis
+Statistical/heuristic thinking for anomaly detection — defining what counts as a "suspicious" price jump versus normal volatility
+Building a lightweight audit trail (a cleaning log) so every automated correction is traceable back to a reason
+Working with a persistent SQLite database as the shared data layer across projects, including SQL query design (? placeholders over f-strings for safety)
+### Notes
+This project assumes the raw data pipeline already works (that was Project 1's job) and instead focuses entirely on trust: is the data actually correct, complete, and comparable across time? Nothing here touches strategy or signals yet — it's the "make sure the foundation isn't rotten" step that everything from Project 4 onward will quietly depend on. So far, the missing-trading-days script (missing_trading_days.py) has been built and walked through end to end; the split/dividend adjustment, suspicious-jump detection, and logging stages are still ahead.
+
 ---
 
 
