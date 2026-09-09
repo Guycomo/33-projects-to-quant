@@ -62,7 +62,8 @@ Working with a persistent SQLite database as the shared data layer across projec
 ### Notes
 This project assumes the raw data pipeline already works (that was Project 1's job) and instead focuses entirely on trust: is the data actually correct, complete, and comparable across time? Nothing here touches strategy or signals yet — it's the "make sure the foundation isn't rotten" step that everything from Project 4 onward will quietly depend on. So far, the missing-trading-days script (missing_trading_days.py) has been built and walked through end to end; the split/dividend adjustment, suspicious-jump detection, and logging stages are still ahead.
 
-Project 4
+## Project 4
+### What is does
 ---
 
 
