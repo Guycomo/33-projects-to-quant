@@ -8,7 +8,7 @@ This repository contains 33 projects, ordered purely by increasing difficulty, t
 
 Several of the bigger projects are preceded by a **warm-up project** — a small, self-contained piece cut out of the next project's core new idea. The warm-up is meant to be reasoned through independently before the harder project is tackled, so that each big step only ever introduces one genuinely new concept at a time.
 
-The projects are grouped into five phases:
+The projects are grouped into five phases:-
 
 - **Phase 1 — Foundations:** data pipelines, cleaning, and your first backtests
 - **Phase 2 — Statistical Strategy Building:** mean reversion, pairs trading, momentum, and a hand-built backtesting engine
