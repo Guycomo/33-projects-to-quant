@@ -2,7 +2,7 @@
 
 A self-taught, hands-on roadmap for building quantitative and algorithmic trading skills from scratch — one small project at a time.
 
-## What this is
+## What this repo is about
 
 This repository contains 33 projects, ordered purely by increasing difficulty, that walk from a first "pull one stock's price history" script all the way to a full end-to-end quant research pipeline. Each project stands on its own — the code in any given project runs independently — but the *knowledge* is cumulative: roughly half of what any given project teaches is new, and the other half builds directly on what was learned in the project before it.
 
